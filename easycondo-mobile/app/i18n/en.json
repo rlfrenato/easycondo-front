@@ -1,0 +1,15 @@
+{
+  "Name" : "Name",
+  "Street": "Street",
+  "Neighborhood": "Neighborhood",
+  "Number": "Number",
+  "City": "City",
+  "Zip Code": "Zip Code",
+  "Phone": "Phone",
+  "Website": "Website",
+  "Email Address": "Email Address",
+  "Password": "Password",
+  "Save": "Save",
+  "Add Condominium": "Add Condominium",
+  "This field is mandatory": "This field is mandatory"
+}

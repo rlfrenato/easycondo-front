@@ -1,0 +1,53 @@
+.main-page {
+  width: 100%;
+  background-color: #fafafa;
+}
+
+.list-item-title {
+  font-size: 18px;
+  margin-left: 40px;    
+  margin-top: 40px;
+  margin-bottom: 5px;
+  border: 0px;
+  color: rgb(70, 70, 70);
+}
+
+.list-sub-item {
+  font-size: 16px;
+  margin-left: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  color: rgb(165, 165, 165);    
+}
+
+.list-sub-item-icon {
+  font-size: 16px;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  border: 0px;
+  color: rgb(165, 165, 165);
+  font-family: 'icomoon';  
+}
+
+.long-button {
+  width: 95%;
+  color: white;
+  background-color: #607d8b;
+  margin-top: 55px;
+}
+
+.small-spacing {
+  width: 95%;
+}
+
+.icon-button {
+  font-family: 'icomoon';
+  background-color: #fafafa;
+  border-color: #fafafa;  
+  border-width: 1;  
+  color: rgb(70, 70, 70);
+  width: 12%;
+  font-size: 16px;
+}

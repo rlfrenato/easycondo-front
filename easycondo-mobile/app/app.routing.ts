@@ -1,12 +1,15 @@
 import { LoginComponent } from "./pages/login/login.component";
-import { ListComponent } from "./pages/list/list.component";
+import { AddCondominiumComponent } from "./pages/add-condominium/add.condominium.component";
+import { ListCondominiumComponent } from "./pages/list-condominium/list.condominium.component";
 
 export const routes = [
-  { path: "", component: LoginComponent },
-  { path: "list", component: ListComponent }
+  { path: "", component: ListCondominiumComponent },
+  { path: "addCondominium", component: AddCondominiumComponent },
+  { path: "listCondominium", component: ListCondominiumComponent }
 ];
 
 export const navigatableComponents = [
-  LoginComponent,
-  ListComponent
+  ListCondominiumComponent,
+  AddCondominiumComponent,
+  LoginComponent
 ];

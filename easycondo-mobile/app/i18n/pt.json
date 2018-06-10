@@ -1,0 +1,16 @@
+{
+  "Name" : "Nome",
+  "Street": "Rua",
+  "Neighborhood": "Bairro",
+  "Number": "Número",
+  "City": "City",
+  "State": "State",
+  "Zip Code": "CEP",
+  "Phone": "Telefone",
+  "Website": "Site",
+  "Email Address": "Email",
+  "Password": "Senha",
+  "Save": "Salvar",
+  "Add Condominium": "Adicionar Condomínio",
+  "This field is mandatory": "Esse campo é obrigatório"  
+}

@@ -2,14 +2,10 @@ npm-debug.log
 .DS_Store
 
 *.js.map
-app/**/*.js
-e2e/**/*.js
-e2e/reports/
-hooks/
-lib/
-node_modules/
-platforms/
-tmp/
-typings/
-report/
-test-results.xml
+easycondo-mobile/app/**/*.js
+easycondo-mobile/e2e/**/*.js
+easycondo-mobile/hooks/
+easycondo-mobile/lib/
+easycondo-mobile/node_modules/
+easycondo-mobile/platforms/
+
