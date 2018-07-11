@@ -33,23 +33,23 @@ export class ManageCondominiumComponent implements OnInit {
   warningIcon: string;
   deleteIcon: string;
 
-  nameMandatoryValidationFail : boolean;
-  streetMandatoryValidationFail : boolean;
-  neighborhoodMandatoryValidationFail : boolean;
-  numberMandatoryValidationFail : boolean;
-  cityMandatoryValidationFail : boolean;
-  stateMandatoryValidationFail : boolean;
-  zipCodeMandatoryValidationFail : boolean;
+  nameMandatoryValidationFail: boolean;
+  streetMandatoryValidationFail: boolean;
+  neighborhoodMandatoryValidationFail: boolean;
+  numberMandatoryValidationFail: boolean;
+  cityMandatoryValidationFail: boolean;
+  stateMandatoryValidationFail: boolean;
+  zipCodeMandatoryValidationFail: boolean;
 
-  pageTitle : string;
+  pageTitle: string;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService,
     private condominiumService: CondominiumService, private page: Page, private icon: TNSFontIconService) {
 
     this.language = Platform.device.language;
     this.translate.setDefaultLang(Config.defaultLanguage);
     this.translate.use(Platform.device.language.split("-")[0]);
-    
+
     this.condominium = new Condominium();
     this.nameIcon = String.fromCharCode(0xe903);
     this.addressIcon = String.fromCharCode(0xe947);
@@ -64,25 +64,25 @@ export class ManageCondominiumComponent implements OnInit {
 
   ngOnInit() {
     let condominiumId;
-    this.activatedRoute.params.subscribe( params => 
+    this.activatedRoute.params.subscribe(params =>
       condominiumId = params["id"]
     );
 
     if (!(typeof condominiumId === 'undefined')) {
       this.condominiumService.getCondominiumById(condominiumId)
-      .subscribe(
+        .subscribe(
         condominium => this.condominium = condominium,
         error => console.error('Error: ' + error),
         () => console.log('Completed!')
-      );
+        );
       this.pageTitle = "Edit Condominium";
-    } else {    
+    } else {
       this.pageTitle = "Add Condominium";
     }
   }
 
   saveCondominium() {
-    
+
     if (!this.validateMandatoryFields()) {
       return;
     }
@@ -91,16 +91,16 @@ export class ManageCondominiumComponent implements OnInit {
       .subscribe((result) => {
         this.router.navigate(["/listCondominium"]);
       }, (error) => {
-        alert(error); 
+        alert(error);
       }
-    );
+      );
   }
 
   getTranslatedText(text: string) {
     let translatedText;
     this.translate.get(text).subscribe((data: string) => {
       translatedText = data;
-    }); 
+    });
     return translatedText;
   }
 
@@ -113,71 +113,70 @@ export class ManageCondominiumComponent implements OnInit {
   }
 
   deleteCondominium() {
-     
+
     var dialogs = require("ui/dialogs");
     dialogs.confirm({
-        title: this.getTranslatedText("Delete"),
-        message: this.getTranslatedTextWithParameters("Do you really want to delete?", {parameter: this.condominium.name}),
-        okButtonText: this.getTranslatedText("Delete"),
-        cancelButtonText: this.getTranslatedText("Cancel")
-    }).then(function (result) {
-        if (result) {
-          this.condominiumService.deleteCondominiumById(this.condominium.id)
+      title: this.getTranslatedText("Delete"),
+      message: this.getTranslatedTextWithParameters("Do you really want to delete?", { parameter: this.condominium.name }),
+      okButtonText: this.getTranslatedText("Delete"),
+      cancelButtonText: this.getTranslatedText("Cancel")
+    }).then((result) => {
+      if (result) {
+        this.condominiumService.deleteCondominiumById(this.condominium.id)
           .subscribe((result) => {
             this.router.navigate(["/listCondominium"]);
           }, (error) => {
             alert(error);
-          } 
-        );
-        }
+          });
+      }
     });
   }
 
-  navigationBack() {    
+  navigationBack() {
     this.router.navigate(["/listCondominium"]);
   }
 
   validateMandatoryFields() {
 
-    let validationResultSuccess : boolean;
+    let validationResultSuccess: boolean;
     validationResultSuccess = true;
-        
-    if(typeof this.condominium.name == 'undefined' && !this.condominium.name) {
-      this.nameMandatoryValidationFail = true;   
+
+    if (typeof this.condominium.name == 'undefined' && !this.condominium.name) {
+      this.nameMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.street == 'undefined' && !this.condominium.street) {    
+    if (typeof this.condominium.street == 'undefined' && !this.condominium.street) {
       this.streetMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.neighborhood == 'undefined' && !this.condominium.neighborhood) {    
+    if (typeof this.condominium.neighborhood == 'undefined' && !this.condominium.neighborhood) {
       this.neighborhoodMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.number == 'undefined' && !this.condominium.number) {    
+    if (typeof this.condominium.number == 'undefined' && !this.condominium.number) {
       this.numberMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.city == 'undefined' && !this.condominium.city) {    
+    if (typeof this.condominium.city == 'undefined' && !this.condominium.city) {
       this.cityMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.state == 'undefined' && !this.condominium.state) {    
+    if (typeof this.condominium.state == 'undefined' && !this.condominium.state) {
       this.stateMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
-    if(typeof this.condominium.zipCode == 'undefined' && !this.condominium.zipCode) {    
+    if (typeof this.condominium.zipCode == 'undefined' && !this.condominium.zipCode) {
       this.zipCodeMandatoryValidationFail = true;
       validationResultSuccess = false;
     }
 
     return validationResultSuccess;
   }
-    
+
 }
