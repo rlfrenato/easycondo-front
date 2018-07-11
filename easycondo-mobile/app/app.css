@@ -2,3 +2,12 @@
   background-color: #82a2b3;
   color: white;
 }
+
+.mdi {
+  font-family: "Material Icons", "MaterialIcons-Regular";
+  /* background-color: transparent; */
+  /* border-color: transparent; */
+  /* border-width: 1; */
+  font-size: 25px;  
+  padding: 50px;
+}

@@ -5,15 +5,17 @@
 
 <StackLayout class="main-page">
   <Button (tap)="addCondominium()" text="{{ 'Add Condominium' | translate }}" class="long-button"></Button>
-  <ListView [items]="condominiumList" row="1" class="small-spacing" [class.visible]="listLoaded">
+  <ListView [items]="condominiumList" row="1" class="small-spacing" [class.visible]="listLoaded">    
     <ng-template let-item="item">
-      <StackLayout (tap)="toggle(item)">
-        <Label [text]="item.name" class="list-item-title"></Label>  
-        <StackLayout orientation="horizontal">
-          <Label text="{{ addressIcon }}" class="list-sub-item-icon"></Label>
-          <Label [text]="item.city + ', ' + item.state" class="list-sub-item"></Label>          
-        </StackLayout>
-      </StackLayout>      
-    </ng-template>        
+      <Ripple (tap)="details(item.id)" rippleColor="#c8c8c8">
+        <StackLayout>        
+          <Label [text]="item.name" class="list-item-title"></Label>          
+          <StackLayout orientation="horizontal">
+            <Label text="{{ addressIcon }}" class="list-sub-item-icon"></Label>
+            <Label [text]="item.city + ', ' + item.state" class="list-sub-item"></Label>          
+          </StackLayout>
+        </StackLayout>      
+      </Ripple>
+    </ng-template>          
   </ListView>    
 </StackLayout>

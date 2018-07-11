@@ -16,6 +16,7 @@ export class CondominiumService {
 
     return this.http.post(Config.apiUrl + "condominium/",
       JSON.stringify({
+        id: condominium.id,
         name: condominium.name,
         street: condominium.street,
         neighborhood: condominium.neighborhood,
@@ -32,15 +33,21 @@ export class CondominiumService {
     )
   }
 
-  get1() {
-    return this.http.get(Config.apiUrl + "condominium/", 
-      { headers: this.getCommonHeaders()});
-  }
-
   get() {
     return this.http.get(Config.apiUrl + "condominium/", 
       { headers: this.getCommonHeaders()})
       .map(response => response.json());
+  }
+
+  getCondominiumById(condominiumId: number) {
+    return this.http.get(Config.apiUrl + "condominium/" + condominiumId, 
+      { headers: this.getCommonHeaders()})
+      .map(response => response.json());
+  }
+
+  deleteCondominiumById(condominiumId: number) {  
+    return this.http.delete(Config.apiUrl + "condominium/" + condominiumId,
+    { headers: this.getCommonHeaders()});
   }
 
   getCommonHeaders() {

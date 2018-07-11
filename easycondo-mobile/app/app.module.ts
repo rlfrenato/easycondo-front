@@ -7,6 +7,7 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from "ng2-tra
 import { ScrollView, ScrollEventData } from "tns-core-modules/ui/scroll-view";
 import { Http } from "@angular/http";
 import { HttpModule } from '@angular/http';
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
@@ -27,6 +28,9 @@ export function createTranslateLoader(http: Http) {
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [Http]
+    }),
+    TNSFontIconModule.forRoot({
+      'mdi': 'material-design-icons.css'
     })
   ],
   declarations: [

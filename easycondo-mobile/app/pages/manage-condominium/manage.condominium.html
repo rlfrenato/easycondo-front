@@ -1,0 +1,85 @@
+<ActionBar android:title="{{ pageTitle | translate }}" class="action-bar">
+  <NavigationButton text="Go Back" android.systemIcon="ic_dialog_close_normal_holo" (tap)="navigationBack()">
+  </NavigationButton>  
+  <ActionItem ios.position="right" (tap)="saveCondominium()">
+    <Ripple rippleColor="#c8c8c8">
+      <Label class="mdi" [text]="'mdi-done' | fonticon"></Label>
+    </Ripple>
+  </ActionItem>
+  <ActionItem ios.position="right" (tap)="deleteCondominium(condominium.id)" visibility="{{ condominium.id == undefined ? 'collapsed' : 'visible' }}">
+    <Ripple rippleColor="#c8c8c8">
+      <Label class="mdi" [text]="'mdi-delete' | fonticon"></Label>
+    </Ripple>
+  </ActionItem>
+</ActionBar>
+
+<GridLayout rows="auto" class="main-page">
+  <ScrollView orientation="vertical" row="0">
+    <StackLayout orientation="vertical">
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="{{ nameIcon }}" row="0" col="0" class="icon"></Label>
+        <TextField required #name="ngModel" hint="{{ 'Name' | translate }}" row="0" col="1" [(ngModel)]="condominium.name"></TextField>        
+        <Label *ngIf="name.errors && (name.dirty || !name.pristine || nameMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="{{ addressIcon }}" row="0" col="0" class="icon"></Label>
+        <TextField required #street="ngModel" hint="{{ 'Street' | translate }}" row="0" col="1" [(ngModel)]="condominium.street"></TextField>
+        <Label *ngIf="street.errors && (street.dirty || !street.pristine || streetMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="" row="0" col="0" class="icon"></Label>
+        <TextField required #neighborhood="ngModel" hint="{{ 'Neighborhood' | translate }}" row="0" col="1" [(ngModel)]="condominium.neighborhood"></TextField>
+        <Label *ngIf="neighborhood.errors && (neighborhood.dirty || !neighborhood.pristine || neighborhoodMandatoryValidationFail)"
+          text="{{ 'This field is mandatory' | translate }}" row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="" row="0" col="0" class="icon"></Label>
+        <TextField required #number="ngModel" hint="{{ 'Number' | translate }}" row="0" col="1" keyboardType="number" [(ngModel)]="condominium.number"></TextField>
+        <Label *ngIf="number.errors && (number.dirty || !number.pristine || numberMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="" row="0" col="0" class="icon"></Label>
+        <TextField required #city="ngModel" hint="{{ 'City' | translate }}" row="0" col="1" [(ngModel)]="condominium.city"></TextField>
+        <Label *ngIf="city.errors && (city.dirty || !city.pristine || cityMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="" row="0" col="0" class="icon"></Label>
+        <TextField required #state="ngModel" hint="{{ 'State' | translate }}" row="0" col="1" [(ngModel)]="condominium.state"></TextField>
+        <Label *ngIf="state.errors && (state.dirty || !state.pristine || stateMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="" row="0" col="0" class="icon"></Label>
+        <TextField required #zipCode="ngModel" hint="{{ 'Zip Code' | translate }}" row="0" col="1" [(ngModel)]="condominium.zipCode"></TextField>
+        <Label *ngIf="zipCode.errors && (zipCode.dirty || !zipCode.pristine || zipCodeMandatoryValidationFail)" text="{{ 'This field is mandatory' | translate }}"
+          row="1" col="1" class="validation-error"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="{{ emailIcon }}" row="0" col="0" class="icon"></Label>
+        <TextField hint="{{ 'Email Address' | translate }}" keyboardType="email" row="0" col="1" [(ngModel)]="condominium.email"></TextField>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="{{ phoneIcon }}" row="0" col="0" class="icon"></Label>
+        <TextField hint="{{ 'Phone' | translate }}" row="0" col="1" [(ngModel)]="condominium.phone"></TextField>
+      </GridLayout>
+
+      <GridLayout columns="auto,*" rows="auto,auto" class="icon-text-field">
+        <Label text="{{ websiteIcon }}" row="0" col="0" class="icon"></Label>
+        <TextField hint="{{ 'Website' | translate }}" row="0" col="1" [(ngModel)]="condominium.website"></TextField>
+      </GridLayout>
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>

@@ -8,6 +8,6 @@ import { setStatusBarColors } from "./utils/status-bar-util";
 })
 export class AppComponent {
   constructor() {
-    setStatusBarColors();
+    // setStatusBarColors();
   }
 }

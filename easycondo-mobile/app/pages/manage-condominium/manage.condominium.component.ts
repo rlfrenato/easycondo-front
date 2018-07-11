@@ -1,21 +1,23 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { Page } from "ui/page";
 import { TranslateService } from "ng2-translate";
 import * as Platform from "platform";
 import { PlatformLocation } from '@angular/common';
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 import { Condominium } from "../../shared/condominium/condominium";
 import { CondominiumService } from "../../shared/condominium/condominium.service";
 import { Config } from "../../shared/config";
 
 @Component({
-  selector: "add-condominium",
+  selector: "manage-condominium",
   providers: [CondominiumService],
-  templateUrl: "./pages/add-condominium/add.condominium.html",
-  styleUrls: ["./pages/add-condominium/add.condominium-common.css"]
+  templateUrl: "./pages/manage-condominium/manage.condominium.html",
+  styleUrls: ["./pages/manage-condominium/manage.condominium-common.css"]
 })
-export class AddCondominiumComponent implements OnInit {
+export class ManageCondominiumComponent implements OnInit {
 
   public language: string;
 
@@ -29,6 +31,7 @@ export class AddCondominiumComponent implements OnInit {
   navigationBackIcon: string;
   navigationSaveIcon: string;
   warningIcon: string;
+  deleteIcon: string;
 
   nameMandatoryValidationFail : boolean;
   streetMandatoryValidationFail : boolean;
@@ -38,8 +41,10 @@ export class AddCondominiumComponent implements OnInit {
   stateMandatoryValidationFail : boolean;
   zipCodeMandatoryValidationFail : boolean;
 
-  constructor(private router: Router, private translate: TranslateService, 
-    private condominiumService: CondominiumService, private page: Page) {
+  pageTitle : string;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, 
+    private condominiumService: CondominiumService, private page: Page, private icon: TNSFontIconService) {
 
     this.language = Platform.device.language;
     this.translate.setDefaultLang(Config.defaultLanguage);
@@ -54,9 +59,26 @@ export class AddCondominiumComponent implements OnInit {
     this.navigationBackIcon = String.fromCharCode(0xea40);
     this.navigationSaveIcon = String.fromCharCode(0xea10);
     this.warningIcon = String.fromCharCode(0xea07);
+    this.deleteIcon = String.fromCharCode(0xe9ac);
   }
 
   ngOnInit() {
+    let condominiumId;
+    this.activatedRoute.params.subscribe( params => 
+      condominiumId = params["id"]
+    );
+
+    if (!(typeof condominiumId === 'undefined')) {
+      this.condominiumService.getCondominiumById(condominiumId)
+      .subscribe(
+        condominium => this.condominium = condominium,
+        error => console.error('Error: ' + error),
+        () => console.log('Completed!')
+      );
+      this.pageTitle = "Edit Condominium";
+    } else {    
+      this.pageTitle = "Add Condominium";
+    }
   }
 
   saveCondominium() {
@@ -74,6 +96,43 @@ export class AddCondominiumComponent implements OnInit {
     );
   }
 
+  getTranslatedText(text: string) {
+    let translatedText;
+    this.translate.get(text).subscribe((data: string) => {
+      translatedText = data;
+    }); 
+    return translatedText;
+  }
+
+  getTranslatedTextWithParameters(text: string, parameters) {
+    let translatedText;
+    this.translate.get(text, parameters).subscribe((data: string) => {
+      translatedText = data;
+    });
+    return translatedText;
+  }
+
+  deleteCondominium() {
+     
+    var dialogs = require("ui/dialogs");
+    dialogs.confirm({
+        title: this.getTranslatedText("Delete"),
+        message: this.getTranslatedTextWithParameters("Do you really want to delete?", {parameter: this.condominium.name}),
+        okButtonText: this.getTranslatedText("Delete"),
+        cancelButtonText: this.getTranslatedText("Cancel")
+    }).then(function (result) {
+        if (result) {
+          this.condominiumService.deleteCondominiumById(this.condominium.id)
+          .subscribe((result) => {
+            this.router.navigate(["/listCondominium"]);
+          }, (error) => {
+            alert(error);
+          } 
+        );
+        }
+    });
+  }
+
   navigationBack() {    
     this.router.navigate(["/listCondominium"]);
   }
@@ -82,7 +141,7 @@ export class AddCondominiumComponent implements OnInit {
 
     let validationResultSuccess : boolean;
     validationResultSuccess = true;
-
+        
     if(typeof this.condominium.name == 'undefined' && !this.condominium.name) {
       this.nameMandatoryValidationFail = true;   
       validationResultSuccess = false;

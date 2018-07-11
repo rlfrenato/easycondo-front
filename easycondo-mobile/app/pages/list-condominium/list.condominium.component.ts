@@ -8,6 +8,7 @@ import { Condominium } from "../../shared/condominium/condominium";
 import { CondominiumService } from "../../shared/condominium/condominium.service";
 import { Config } from "../../shared/config";
 
+
 @Component({
   selector: "list-condominium",
   providers: [CondominiumService],
@@ -15,7 +16,7 @@ import { Config } from "../../shared/config";
   styleUrls: ["./pages/list-condominium/list.condominium-common.css"]
 })
 export class ListCondominiumComponent implements OnInit {
-
+  
   private language: string;
   private condominiumList: Array<Condominium>; 
 
@@ -55,4 +56,7 @@ export class ListCondominiumComponent implements OnInit {
     condominium.visible = !condominium.visible;
   }
 
+  details(condominiumId: string) {    
+    this.router.navigate(["/condominium", condominiumId]);
+  }
 }

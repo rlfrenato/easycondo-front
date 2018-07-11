@@ -12,5 +12,10 @@
   "Password": "Senha",
   "Save": "Salvar",
   "Add Condominium": "Adicionar Condomínio",
+  "Edit Condominium": "Editar Condomínio",
+  "Condominiums": "Condomínios",
+  "Delete": "Deletar",
+  "Cancel": "Cancelar",
+  "Do you really want to delete?": "Deseja realmente deletar {{ parameter }}?",
   "This field is mandatory": "Esse campo é obrigatório"  
 }
