@@ -17,5 +17,9 @@
   "Delete": "Deletar",
   "Cancel": "Cancelar",
   "Do you really want to delete?": "Deseja realmente deletar {{ parameter }}?",
-  "This field is mandatory": "Esse campo é obrigatório"  
+  "This field is mandatory": "Esse campo é obrigatório",
+  "Home": "Início",
+  "Concierge": "Portaria",
+  "Mural": "Mural",
+  "Amenities": "Áreas Comuns" 
 }

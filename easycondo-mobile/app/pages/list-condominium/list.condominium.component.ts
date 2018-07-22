@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { TranslateService } from "ng2-translate";
 import * as Platform from "platform";
+import * as app from "application";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 import { Condominium } from "../../shared/condominium/condominium";
 import { CondominiumService } from "../../shared/condominium/condominium.service";
@@ -59,4 +61,10 @@ export class ListCondominiumComponent implements OnInit {
   details(condominiumId: string) {    
     this.router.navigate(["/condominium", condominiumId]);
   }
+
+  onDrawerButtonTap(): void {
+    const sideDrawer = <RadSideDrawer>app.getRootView();
+    sideDrawer.showDrawer();
+  }
+
 }

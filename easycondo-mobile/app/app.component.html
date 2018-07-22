@@ -1,0 +1,49 @@
+<RadSideDrawer [drawerTransition]="sideDrawerTransition">
+    <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
+        <StackLayout row="0" class="sidedrawer-header">
+          <Label class="sidedrawer-image" [text]="'mdi-portrait' | fonticon"></Label>
+          <Label class="sidedrawer-header-brand" text="User Name"></Label>
+          <Label class="footnote" text="username@mail.com"></Label>
+        </StackLayout>
+
+        <ScrollView row="1">
+            <StackLayout>
+                <GridLayout columns="auto, *" [class.selected]="isPageSelected('Home')" class="sidedrawer-list-item" (tap)="onNavItemTap('/home')">
+                    <Label col="0" [text]="'mdi-home' | fonticon" class="sidedrawer-icon"></Label>
+                    <Label col="1" text="{{ 'Home' | translate }}" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" [class.selected]="isPageSelected('Concierge')" class="sidedrawer-list-item" (tap)="onNavItemTap('/browse')">
+                    <!-- contact-email icon alternative -->
+                    <!-- room-service icon alternative -->
+                    <Label col="0" [text]="'mdi-person-pin' | fonticon" class="sidedrawer-icon"></Label>
+                    <Label col="1" text="{{ 'Concierge' | translate }}" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" [class.selected]="isPageSelected('Mural')" class="sidedrawer-list-item" (tap)="onNavItemTap('/browse')">
+                    <Label col="0" [text]="'mdi-speaker-notes' | fonticon" class="sidedrawer-icon"></Label>
+                    <Label col="1" text="{{ 'Mural' | translate }}" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" [class.selected]="isPageSelected('Amenities')" class="sidedrawer-list-item" (tap)="onNavItemTap('/browse')">
+                    <Label col="0" [text]="'mdi-beach-access' | fonticon" class="sidedrawer-icon"></Label>
+                    <Label col="1" text="{{ 'Amenities' | translate }}" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+                <StackLayout class="sidedrawer-list-item horizontal-rule-light"></StackLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="onNavItemTap('/browse')">                    
+                    <Label col="0" text="Admin" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" [class.selected]="isPageSelected('/listCondominium')" class="sidedrawer-list-item" (tap)="onNavItemTap('/listCondominium')">7
+                    <Label col="0" [text]="'mdi-business' | fonticon" class="sidedrawer-icon"></Label>                    
+                    <Label col="1" text="{{ 'Condominiums' | translate }}" class="sidedrawer-icon-text"></Label>
+                </GridLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
+</RadSideDrawer>

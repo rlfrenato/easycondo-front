@@ -44,6 +44,7 @@
     "nativescript-ngx-fonticon": "^4.2.0",
     "nativescript-ripple": "^2.0.0",
     "nativescript-social-share": "~1.4.0",
+    "nativescript-ui-sidedrawer": "^4.1.1",
     "ng2-translate": "^5.0.0",
     "reflect-metadata": "~0.1.10",
     "rxjs": "~5.5.5",

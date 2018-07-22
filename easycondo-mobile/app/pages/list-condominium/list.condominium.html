@@ -1,6 +1,10 @@
-<ActionBar android:title="{{ 'Condominiums' | translate }}" class="action-bar">
-    <NavigationButton text="Go Back" android.systemIcon="ic_dialog_close_normal_holo" (tap)="navigationBack()">
-    </NavigationButton>    
+<ActionBar class="action-bar">
+  <GridLayout rows="auto" columns="auto,*,auto">
+    <Ripple rippleColor="#c8c8c8" (tap)="onDrawerButtonTap()">
+      <Label class="mdi" [text]="'mdi-menu' | fonticon" row="0" col="0"></Label>
+    </Ripple>
+    <Label class="action-bar-title" text="{{ 'Condominiums' | translate }}" row="0" col="1"></Label>
+  </GridLayout>
 </ActionBar>
 
 <StackLayout class="main-page">

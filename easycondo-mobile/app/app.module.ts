@@ -8,6 +8,7 @@ import { ScrollView, ScrollEventData } from "tns-core-modules/ui/scroll-view";
 import { Http } from "@angular/http";
 import { HttpModule } from '@angular/http';
 import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
@@ -31,7 +32,8 @@ export function createTranslateLoader(http: Http) {
     }),
     TNSFontIconModule.forRoot({
       'mdi': 'material-design-icons.css'
-    })
+    }),
+    NativeScriptUISideDrawerModule
   ],
   declarations: [
     AppComponent,
